@@ -1671,6 +1671,18 @@ static void virt_machine_device_plug_cb(HotplugHandler *hotplug_dev,
     }
 }
 
+static void dump_allowed_dynamic_sysbus_devs(MachineClass *mc)
+{
+    strList *devName = NULL;
+    info_report("Dumping allowed dynamic sysbus devs");
+    for (devName = mc->allowed_dynamic_sysbus_devices; devName != NULL; devName = devName->next)
+    {
+        info_report("%s",devName->value);
+    }
+
+    return;
+}
+
 static void virt_machine_class_init(ObjectClass *oc, void *data)
 {
     char str[128];
@@ -1701,6 +1713,7 @@ static void virt_machine_class_init(ObjectClass *oc, void *data)
     machine_class_allow_dynamic_sysbus_dev(mc, TYPE_RISCV_CBQRI_BC);
     machine_class_allow_dynamic_sysbus_dev(mc, TYPE_RISCV_CBQRI_CC);
 
+    dump_allowed_dynamic_sysbus_devs(mc);
 
     object_class_property_add_bool(oc, "aclint", virt_get_aclint,
                                    virt_set_aclint);
