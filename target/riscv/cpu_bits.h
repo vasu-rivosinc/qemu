@@ -220,7 +220,7 @@
 /* Supervisor Protection and Translation */
 #define CSR_SPTBR           0x180
 #define CSR_SATP            0x180
-#define CSR_SQOSCFG         0x181
+#define CSR_SRMCFG          0x181
 
 /* Supervisor-Level Window to Indirectly Accessed Registers (AIA) */
 #define CSR_SISELECT        0x150
@@ -906,8 +906,8 @@ typedef enum RISCVException {
 /* JVT CSR bits */
 #define JVT_MODE                           0x3F
 #define JVT_BASE                           (~0x3F)
-/* SQOSCFG BITS (QOSID) */
-#define SQOSCFG_RCID                      0x00000FFF
-#define SQOSCFG_MCID                      0x0FFF0000
+/* SRMCFG BITS (RCID/MCID) */
+#define SRMCFG_RCID                      0x00000FFF
+#define SRMCFG_MCID                      0x0FFF0000
 
 #endif

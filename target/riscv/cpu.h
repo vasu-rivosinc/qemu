@@ -227,7 +227,7 @@ struct CPUArchState {
     target_ulong mcause;
     target_ulong mtval;  /* since: priv-1.10.0 */
 
-    target_ulong sqoscfg;
+    target_ulong srmcfg;
 
     /* Machine and Supervisor interrupt priorities */
     uint8_t miprio[64];

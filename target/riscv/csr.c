@@ -3024,11 +3024,11 @@ static RISCVException write_satp(CPURISCVState *env, int csrno,
     return RISCV_EXCP_NONE;
 }
 
-static RISCVException check_sqoscfg(CPURISCVState *env, int csrno)
+static RISCVException check_srmcfg(CPURISCVState *env, int csrno)
 {
     RISCVCPU *cpu = env_archcpu(env);
 
-    if (!cpu->cfg.ext_ssqosid) {
+    if (!cpu->cfg.ext_srmcfg) {
         return RISCV_EXCP_ILLEGAL_INST;
     }
 
@@ -3039,17 +3039,17 @@ static RISCVException check_sqoscfg(CPURISCVState *env, int csrno)
     return hmode(env, csrno);
 }
 
-static RISCVException read_sqoscfg(CPURISCVState *env, int csrno,
+static RISCVException read_srmcfg(CPURISCVState *env, int csrno,
                                 target_ulong *val)
 {
-    *val = env->sqoscfg;
+    *val = env->srmcfg;
     return RISCV_EXCP_NONE;
 }
 
-static RISCVException write_sqoscfg(CPURISCVState *env, int csrno,
+static RISCVException write_srmcfg(CPURISCVState *env, int csrno,
                                  target_ulong val)
 {
-    env->sqoscfg = val & (SQOSCFG_RCID | SQOSCFG_MCID);
+    env->srmcfg = val & (SRMCFG_RCID | SRMCFG_MCID);
     return RISCV_EXCP_NONE;
 }
 
@@ -4699,7 +4699,7 @@ riscv_csr_operations csr_ops[CSR_TABLE_SIZE] = {
     [CSR_SATP]     = { "satp",     satp, read_satp,     write_satp     },
 
     /* Supervisor-Level Quality of Service Identifier */
-    [CSR_SQOSCFG]  = { "sqoscfg",  check_sqoscfg, read_sqoscfg, write_sqoscfg },
+    [CSR_SRMCFG]  = { "srmcfg",  check_srmcfg, read_srmcfg, write_srmcfg },
 
     /* Supervisor-Level Window to Indirectly Accessed Registers (AIA) */
     [CSR_SISELECT]   = { "siselect",   aia_smode, NULL, NULL, rmw_xiselect },
