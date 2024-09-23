@@ -575,7 +575,7 @@ static void riscv_cbqri_cc_class_init(ObjectClass *klass, void *data)
     set_bit(DEVICE_CATEGORY_MISC, dc->categories);
     dc->desc = "RISC-V CBQRI Capacity Controller";
     device_class_set_props(dc, riscv_cbqri_cc_properties);
-    dc->reset = riscv_cbqri_cc_reset;
+    dc->legacy_reset = riscv_cbqri_cc_reset;
     dc->user_creatable = true;
 }
 

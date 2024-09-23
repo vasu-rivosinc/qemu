@@ -571,7 +571,7 @@ static void riscv_cbqri_bc_class_init(ObjectClass *klass, void *data)
     set_bit(DEVICE_CATEGORY_MISC, dc->categories);
     dc->desc = "RISC-V CBQRI Bandwidth Controller";
     device_class_set_props(dc, riscv_cbqri_bc_properties);
-    dc->reset = riscv_cbqri_bc_reset;
+    dc->legacy_reset = riscv_cbqri_bc_reset;
     dc->user_creatable = true;
 
     info_report("%s", __func__);
